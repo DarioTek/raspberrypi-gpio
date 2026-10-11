@@ -182,7 +182,9 @@ def dance_party():
         heartbeat,
         disco,
         random_dance,
-        firefly
+        firefly,
+        breathing,
+        fireworks
     ]
 
     for _ in range(5):
