@@ -44,8 +44,10 @@ def led_on():
 def led_off():
     GPIO.output(LED_PIN, GPIO.HIGH)
 
-def flash_dot():
-    print(".", end="", flush=True)
+def flash_dot(show_output=True):
+
+    if show_output:
+        print(".", end="", flush=True)
 
     led_on()
     time.sleep(UNIT)
@@ -53,8 +55,10 @@ def flash_dot():
 
     time.sleep(UNIT)
 
-def flash_dash():
-    print("-", end="", flush=True)
+def flash_dash(show_output=True):
+
+    if show_output:
+        print("-", end="", flush=True)
 
     led_on()
     time.sleep(UNIT * 3)
@@ -62,40 +66,46 @@ def flash_dash():
 
     time.sleep(UNIT)
 
-def flash_letter(letter):
+def flash_letter(letter, secret_mode=False):
 
     morse = MORSE_CODE.get(letter)
 
     if not morse:
         return
 
-    print(f" [{letter}:{morse}] ", end="", flush=True)
+    if not secret_mode:
+        print(f" [{letter}:{morse}] ", end="", flush=True)
 
     for symbol in morse:
 
         if symbol == ".":
-            flash_dot()
+            flash_dot(not secret_mode)
 
         elif symbol == "-":
-            flash_dash()
+            flash_dash(not secret_mode)
 
     # Additional pause between letters
     time.sleep(UNIT * 2)
 
-def flash_message(message):
+def flash_message(message, secret_mode=False):
 
     for char in message.upper():
 
         if char == " ":
-            print("   /   ", end="", flush=True)
+
+            if not secret_mode:
+                print("   /   ", end="", flush=True)
 
             # Word spacing
             time.sleep(UNIT * 7)
             continue
 
-        flash_letter(char)
+        flash_letter(char, secret_mode)
 
-    print("\nDone!")
+    if not secret_mode:
+        print("\nDone!")
+    else:
+        print("\nTransmission complete.")
 
 def message_to_morse(message):
 
@@ -130,18 +140,40 @@ def main():
 
     while True:
 
-        message = input("Enter message: ")
+        print("\nSelect Mode")
+        print("1 - Normal Mode")
+        print("2 - Secret Agent Mode")
+
+        mode = input("Choice: ").strip()
+
+        secret_mode = (mode == "2")
+
+        if secret_mode:
+            print("\n*** SECRET AGENT MODE ACTIVATED ***")
+            print("Message and Morse code will NOT be displayed.")
+        else:
+            print("\nNormal Mode")
+
+        message = input("\nEnter message: ")
 
         if message.lower() == "quit":
             break
 
-        morse = message_to_morse(message)
+        if secret_mode:
 
-        print("\nMorse Code:")
-        print(morse)
-        print("\nFlashing LED...\n")
+            print("\nTransmitting classified message...")
+            flash_message(message, secret_mode=True)
 
-        flash_message(message)
+        else:
+
+            morse = message_to_morse(message)
+
+            print("\nMorse Code:")
+            print(morse)
+            print("\nFlashing LED...\n")
+
+            flash_message(message, secret_mode=False)
+
 
 if __name__ == "__main__":
 
