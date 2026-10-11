@@ -143,9 +143,13 @@ def main():
         print("\nSelect Mode")
         print("1 - Normal Mode")
         print("2 - Secret Agent Mode")
+        print("3 - Quit")
 
         mode = input("Choice: ").strip()
 
+        if mode == "3":
+            break
+        
         secret_mode = (mode == "2")
 
         if secret_mode:
