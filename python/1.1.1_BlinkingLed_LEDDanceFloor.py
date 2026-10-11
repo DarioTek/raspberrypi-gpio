@@ -129,6 +129,52 @@ def breathing():
         pwm.stop()
         led_off()
 
+def fireworks():
+    print("Fireworks!")
+
+    for show in range(5):
+
+        print(f"Launching firework #{show + 1}")
+
+        # Launch effect
+        for delay in [0.30, 0.25, 0.20, 0.15, 0.10]:
+            led_on()
+            time.sleep(delay)
+            led_off()
+            time.sleep(delay)
+
+        # Pause at the top before explosion
+        time.sleep(0.3)
+
+        print("BOOM!")
+
+        # Explosion effect
+        for _ in range(random.randint(15, 30)):
+            led_on()
+            time.sleep(random.uniform(0.01, 0.05))
+            led_off()
+            time.sleep(random.uniform(0.01, 0.05))
+
+        # Sparkle effect
+        for _ in range(random.randint(10, 20)):
+            led_on()
+            time.sleep(random.uniform(0.03, 0.10))
+            led_off()
+            time.sleep(random.uniform(0.05, 0.25))
+
+        # Wait before next firework
+        time.sleep(random.uniform(1.0, 2.0))
+
+    print("GRAND FINALE!")
+
+    for _ in range(100):
+        led_on()
+        time.sleep(0.02)
+        led_off()
+        time.sleep(0.02)
+
+    time.sleep(1)        
+
 def dance_party():
     print("Dance Party!")
 
@@ -159,14 +205,15 @@ def show_menu():
     print("6 - Firefly")
     print("7 - Breathing")
     print("8 - Dance Party")
-    print("9 - Exit")
+    print("9 - Fireworks")
+    print("0 - Exit")
     print("========================")
 
 def main():
     while True:
         show_menu()
 
-        choice = input("Select a dance move (1-9): ").strip()
+        choice = input("Select a dance move: ").strip()
 
         if choice == "1":
             slow_blink()
@@ -193,6 +240,9 @@ def main():
             dance_party()
 
         elif choice == "9":
+            fireworks()
+
+        elif choice == "0":
             print("Goodbye!")
             break
 
