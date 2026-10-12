@@ -59,23 +59,31 @@ def setColor(color):
 
 def direct_pin_test():
 
+    GPIO.cleanup()
+
+    GPIO.setmode(GPIO.BCM)
+
+    GPIO.setup(17, GPIO.OUT)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(27, GPIO.OUT)
+
     while True:
 
-        print("Testing GPIO17")
+        print("GPIO17")
         GPIO.output(17, GPIO.LOW)
         time.sleep(3)
         GPIO.output(17, GPIO.HIGH)
 
-        print("Testing GPIO18")
+        print("GPIO18")
         GPIO.output(18, GPIO.LOW)
         time.sleep(3)
         GPIO.output(18, GPIO.HIGH)
 
-        print("Testing GPIO27")
+        print("GPIO27")
         GPIO.output(27, GPIO.LOW)
         time.sleep(3)
         GPIO.output(27, GPIO.HIGH)
-
+		
 def main():
     direct_pin_test()
 				
