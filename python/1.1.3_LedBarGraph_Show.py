@@ -66,6 +66,30 @@ def mode3_alternate():
         for i in range(1, len(ledPins), 2):
             GPIO.output(ledPins[i], GPIO.LOW)
 
+# Mode 4: LEDs meet in the middle from the outside
+def mode4_meetInMiddle():
+    for _ in range(5):
+        for i in range(5):
+            left_pin = ledPins[i]
+            right_pin = ledPins[9 - i]
+            GPIO.output(left_pin, GPIO.HIGH)
+            GPIO.output(right_pin, GPIO.HIGH)
+            time.sleep(0.15)
+            GPIO.output(left_pin, GPIO.LOW)
+            GPIO.output(right_pin, GPIO.LOW)
+
+# Mode 5: LEDs split from the middle outward
+def mode5_splitFromMiddle():
+    for _ in range(5):
+        for i in range(4, -1, -1):
+            left_pin = ledPins[i]
+            right_pin = ledPins[9 - i]
+            GPIO.output(left_pin, GPIO.HIGH)
+            GPIO.output(right_pin, GPIO.HIGH)
+            time.sleep(0.15)
+            GPIO.output(left_pin, GPIO.LOW)
+            GPIO.output(right_pin, GPIO.LOW)
+
 def setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
@@ -75,15 +99,17 @@ def setup():
 
 def loop():
     while True:
-        print("\n==============================")
-        print("      LED BAR GRAPH MENU      ")
-        print("==============================")
-        print("1. Mode 1: Original Sequence (Runs 5 times)")
-        print("2. Mode 2: Back & Forth Scan (Runs 5 times)")
-        print("3. Mode 3: Alternate LEDs    (Runs 5 times)")
-        print("4. Quit Program")
+        print("\n==================================")
+        print("       LED BAR GRAPH MENU         ")
+        print("==================================")
+        print("1. Mode 1: Original Sequence     (Runs 5 times)")
+        print("2. Mode 2: Back & Forth Scan     (Runs 5 times)")
+        print("3. Mode 3: Alternate LEDs        (Runs 5 times)")
+        print("4. Mode 4: Meet in the Middle    (Runs 5 times)")
+        print("5. Mode 5: Split from the Middle (Runs 5 times)")
+        print("6. Quit Program")
         
-        choice = input("\nSelect a mode (1-4): ").strip()
+        choice = input("\nSelect a mode (1-6): ").strip()
         
         if choice == '1':
             print("\n[Running Mode 1...]")
@@ -95,10 +121,16 @@ def loop():
             print("\n[Running Mode 3...]")
             mode3_alternate()
         elif choice == '4':
+            print("\n[Running Mode 4...]")
+            mode4_meetInMiddle()
+        elif choice == '5':
+            print("\n[Running Mode 5...]")
+            mode5_splitFromMiddle()
+        elif choice == '6':
             print("\nExiting program. Goodbye!")
             break
         else:
-            print("\nInvalid choice! Please enter a number between 1 and 4.")
+            print("\nInvalid choice! Please enter a number between 1 and 6.")
 
 def destroy():
     for pin in ledPins:
