@@ -100,6 +100,33 @@ def rainbow_burst():
     for _ in range(40):
         flash(random_color(), 0.04)
 
+def rainbow_color():
+
+    print("🌈 Rainbow (ROYGBIV)")
+
+    # Red, Orange, Yellow, Green,
+    # Blue, Indigo, Violet
+    rainbow_colors = [
+        ("Red",    0xFF0000),
+        ("Orange", 0xFF7F00),
+        ("Yellow", 0xFFFF00),
+        ("Green",  0x00FF00),
+        ("Blue",   0x0000FF),
+        ("Indigo", 0x4B0082),
+        ("Violet", 0x9400D3)
+    ]
+
+    for _ in range(5):
+
+        for name, color in rainbow_colors:
+
+            print(f"Displaying {name}")
+
+            setColor(color)
+            time.sleep(1)
+
+    off()
+
 def golden_sparkler():
 
     print("✨ Golden Sparkler")
@@ -356,7 +383,8 @@ def show_menu():
     print("13 - Lightning Storm")
     print("14 - Mega Grand Finale")
     print("15 - New Year's Show")
-    print("16 - Exit")
+    print("16 - Rainbow (ROYGBIV)")
+    print("17 - Exit")
     print("====================================")
 
 # --------------------------------------------------
@@ -417,6 +445,9 @@ def main():
             new_years_show()
 
         elif choice == "16":
+            rainbow_color()
+
+        elif choice == "17":
             print("Goodbye!")
             break
 
