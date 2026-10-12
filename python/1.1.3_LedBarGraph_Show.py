@@ -2,6 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time
+import random
 
 ledPins = [11, 12, 13, 15, 16, 18, 22, 3, 5, 24]
 
@@ -90,6 +91,20 @@ def mode5_splitFromMiddle():
             GPIO.output(left_pin, GPIO.LOW)
             GPIO.output(right_pin, GPIO.LOW)
 
+# Mode 6: Play all modes in a random order
+def mode6_randomSequence():
+    modes = [
+        mode1_sequence,
+        mode2_backAndForth,
+        mode3_alternate,
+        mode4_meetInMiddle,
+        mode5_splitFromMiddle
+    ]
+    random.shuffle(modes)
+    for mode in modes:
+        mode()
+        time.sleep(0.5)  # Brief pause between different mode transitions
+
 def setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
@@ -107,9 +122,10 @@ def loop():
         print("3. Mode 3: Alternate LEDs        (Runs 5 times)")
         print("4. Mode 4: Meet in the Middle    (Runs 5 times)")
         print("5. Mode 5: Split from the Middle (Runs 5 times)")
-        print("6. Quit Program")
+        print("6. Mode 6: Randomized Sequence   (All modes, shuffled)")
+        print("7. Quit Program")
         
-        choice = input("\nSelect a mode (1-6): ").strip()
+        choice = input("\nSelect a mode (1-7): ").strip()
         
         if choice == '1':
             print("\n[Running Mode 1...]")
@@ -127,10 +143,13 @@ def loop():
             print("\n[Running Mode 5...]")
             mode5_splitFromMiddle()
         elif choice == '6':
+            print("\n[Running Mode 6 (Random Shuffle)...]")
+            mode6_randomSequence()
+        elif choice == '7':
             print("\nExiting program. Goodbye!")
             break
         else:
-            print("\nInvalid choice! Please enter a number between 1 and 6.")
+            print("\nInvalid choice! Please enter a number between 1 and 7.")
 
 def destroy():
     for pin in ledPins:
