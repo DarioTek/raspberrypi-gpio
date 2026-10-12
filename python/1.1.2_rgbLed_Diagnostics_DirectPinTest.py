@@ -6,7 +6,7 @@ import time
 # Set up a color table in Hexadecimal
 COLOR = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF, 0x00FFFF]
 # Set pins' channels with dictionary
-pins = {'Red':17, 'Green':18, 'Blue':27}
+pins = {'Red':27, 'Green':18, 'Blue':17}
 
 
 def setup():
@@ -83,7 +83,7 @@ def direct_pin_test():
         GPIO.output(27, GPIO.LOW)
         time.sleep(3)
         GPIO.output(27, GPIO.HIGH)
-		
+
 def main():
     direct_pin_test()
 				

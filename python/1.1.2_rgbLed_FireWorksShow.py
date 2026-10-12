@@ -6,9 +6,9 @@ import random
 
 # Set pins' channels with dictionary
 pins = {
-    'Red': 17,
+    'Red': 27,
     'Green': 18,
-    'Blue': 27
+    'Blue': 17
 }
 
 # --------------------------------------------------
