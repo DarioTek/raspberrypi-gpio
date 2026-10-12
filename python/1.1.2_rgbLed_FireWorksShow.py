@@ -89,7 +89,7 @@ def red_rocket():
     launch()
 
     for _ in range(30):
-        flash(0xFF0000, 0.03)
+        flash(0xFF0000, 0.3)
 
 def rainbow_burst():
 
@@ -98,7 +98,7 @@ def rainbow_burst():
     launch()
 
     for _ in range(40):
-        flash(random_color(), 0.04)
+        flash(random_color(), 0.4)
 
 def rainbow_color():
 
@@ -134,14 +134,14 @@ def golden_sparkler():
     launch()
 
     for _ in range(60):
-        flash(0xFFD700, random.uniform(0.01, 0.08))
+        flash(0xFFD700, random.uniform(0.3, 0.9))
 
 def rapid_fire_finale():
 
     print("💣 Rapid-Fire Finale")
 
     for _ in range(150):
-        flash(random_color(), 0.01, 0.01)
+        flash(random_color(), 0.5, 0.8)
 
 def galaxy_fireworks():
 
@@ -160,7 +160,7 @@ def galaxy_fireworks():
     for _ in range(50):
         flash(
             random.choice(colors),
-            random.uniform(0.02, 0.08)
+            random.uniform(0.3, 0.9)
         )
 
 def christmas_fireworks():
@@ -181,6 +181,7 @@ def random_show():
     shows = [
         red_rocket,
         rainbow_burst,
+        rainbow_color,
         golden_sparkler,
         galaxy_fireworks,
         christmas_fireworks
@@ -244,10 +245,10 @@ def ocean_fireworks():
     for _ in range(75):
 
         setColor(random.choice(colors))
-        time.sleep(0.08)
+        time.sleep(0.8)
 
         off()
-        time.sleep(0.02)
+        time.sleep(0.3)
 
 def firestorm():
 
@@ -266,8 +267,8 @@ def firestorm():
 
         flash(
             random.choice(colors),
-            random.uniform(0.01, 0.04),
-            0.01
+            random.uniform(0.3, 0.9),
+            0.3
         )
 
 def unicorn_explosion():
@@ -288,7 +289,7 @@ def unicorn_explosion():
 
         flash(
             random.choice(colors),
-            random.uniform(0.02, 0.06)
+            random.uniform(0.5, 0.9)
         )
 
 def color_fade_show():
@@ -321,7 +322,7 @@ def lightning_storm():
 
         for _ in range(flashes):
 
-            flash(0xFFFFFF, 0.03, 0.03)
+            flash(0xFFFFFF, 0.3, 0.3)
 
         time.sleep(random.uniform(0.2, 1.5))
 
@@ -342,7 +343,7 @@ def mega_grand_finale():
     for _ in range(500):
 
         setColor(random.choice(colors))
-        time.sleep(0.01)
+        time.sleep(0.3)
 
     off()
 
