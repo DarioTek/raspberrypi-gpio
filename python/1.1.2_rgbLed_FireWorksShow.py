@@ -171,8 +171,8 @@ def christmas_fireworks():
 
     for _ in range(40):
 
-        flash(0xFF0000, 0.04)
-        flash(0x00FF00, 0.04)
+        flash(0xFF0000, 0.4)
+        flash(0x00FF00, 0.4)
 
 def random_show():
 
