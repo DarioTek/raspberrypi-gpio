@@ -31,13 +31,19 @@ def setup():
     p_G.start(0)
     p_B.start(0)
 
+    # Workaround for the rpi-lgpio PWM.__del__ bug on modern Raspberry Pi OS
+    try:
+        GPIO.PWM.__del__ = lambda self: None
+    except Exception:
+        pass
+
 # --------------------------------------------------
 # RGB HELPERS
 # --------------------------------------------------
 
 def MAP(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) / \
-           (in_max - in_min) + out_min
+            (in_max - in_min) + out_min
 
 def setColor(color):
 
@@ -104,8 +110,6 @@ def rainbow_color():
 
     print("🌈 Rainbow (ROYGBIV)")
 
-    # Red, Orange, Yellow, Green,
-    # Blue, Indigo, Violet
     rainbow_colors = [
         ("Red",    0xFF0000),
         ("Orange", 0xFF7F00),
