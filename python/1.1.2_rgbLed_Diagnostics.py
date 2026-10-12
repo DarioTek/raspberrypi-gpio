@@ -61,18 +61,27 @@ def main():
 
     while True:
 
-        print("RED")
+        print("\nExpected: RED")
         setColor(0xFF0000)
         time.sleep(3)
 
-        print("GREEN")
+        setColor(0x000000)
+        time.sleep(1)
+
+        print("\nExpected: GREEN")
         setColor(0x00FF00)
         time.sleep(3)
 
-        print("BLUE")
+        setColor(0x000000)
+        time.sleep(1)
+
+        print("\nExpected: BLUE")
         setColor(0x0000FF)
         time.sleep(3)
-		
+
+        setColor(0x000000)
+        time.sleep(2)
+				
 def destroy():
 	# Stop all pwm channel
 	p_R.stop()
