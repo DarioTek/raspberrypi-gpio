@@ -1,0 +1,60 @@
+# OS / IDE junk
+.DS_Store
+*.pyc
+
+# .vscode directory
+.vscode/
+
+# Environment and config
+.env
+.env.*
+*.env
+!.env.example
+# Ignore real config
+config.py
+!backtests/credit_put_spread/config.py
+
+# Keep template config
+!config_template.py
+
+# Log files
+*.log
+*.log.*
+logs/
+dariotek_finance_app/logs/
+
+# JSON and model outputs
+dariotek_finance_app/json/
+dariotek_finance_app/*.keras
+dariotek_finance_app/utils/yahoo_sender_domains.csv
+dariotek_finance_app/utils/google_sender_domains.csv
+dariotek_finance_app/utils/icloud_sender_domains.csv
+dariotek_finance_app/tokens.json
+dariotek_finance_app/tokens2.json
+
+# Cache and Python bytecode
+__pycache__/
+flask/__pycache__/
+/python/__pycache__/
+
+# App-specific 
+/finance
+/venv_pip/
+/venv_ml_tf/
+node_modules/
+playwright-report/
+test-results/
+*.csv
+dariotek_finance_app/static/backtest_plot.html
+dariotek_finance_app/resume_bot_chroma_db/
+dariotek_finance_app/resume_bot_chroma_db_ollama_tinyllama/
+dariotek_finance_app/resume_bot_chroma_db_ollama_tinyllama/77fec279-0cfe-420d-ad37-70399554c146/data_level0.bin
+dariotek_finance_app/resume_bot_chroma_db_ollama_tinyllama/chroma.sqlite3
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
